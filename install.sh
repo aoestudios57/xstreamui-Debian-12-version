@@ -310,18 +310,18 @@ read -p "...... Enter Your Desired Apache Port Access: " APACHEACCESPORT
 echo " "
 else
 	echo "Desired Apache Port Acces set $APACHEACCESPORT"
-fi
+if
 if [[ "$EMAIL" == "" ]] ; then
 read -p "...... Enter Your Email Addres: " EMAIL
 else
 	echo "Your Email Addres set $EMAIL"
-fi
+if
 echo " "
 if [[ "$PASSMYSQL" == "" ]] ; then
 read -p "...... Enter Your Desired MYSQL Password: " PASSMYSQL
 else
 	echo "Desired MYSQL Password set $PASSMYSQL"
-fi
+if
 echo " . "
 PORTSSH=22
 echo " "
@@ -333,7 +333,7 @@ case $yn in
     [Yy]* ) break;;
     [Nn]* ) exit;;
 esac
-fi
+if
 clear
 # ***************************************
 # Installation really starts here
@@ -359,7 +359,7 @@ if [[ "$OS" = "CentOs" || "$OS" = "Fedora" || "$OS" = "Centos Stream" ]]; then
     rpm -qa | sort
 elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
     dpkg --get-selections
-fi
+if
 $PACKAGE_INSTALLER daemonize
 mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$PASSMYSQL'; flush privileges;"
 echo -e "\\r${CHECK_MARK} Installation Of Packages Done"
@@ -372,7 +372,7 @@ adduser --system --shell /bin/false --group --disabled-login xtreamcodes
 else
 adduser --system --shell /bin/false xtreamcodes
 mkdir -p /home/xtreamcodes
-fi
+if
 OSNAME=$(echo $OS | sed  "s| |.|g" )
 wget -q -O /tmp/xtreamcodes.tar.gz https://github.com/amidevous/xtream-ui-ubuntu20.04/releases/download/start/main_xui_"$OSNAME"_"$VER".tar.gz
 tar -xf "/tmp/xtreamcodes.tar.gz" -C "/home/xtreamcodes/"
@@ -446,14 +446,14 @@ echo -n "[+] Configuration Of Crons & Autorisations..."
 rm -r /home/xtreamcodes/iptv_xtream_codes/database.sql
 if ! grep -q "xtreamcodes ALL = (root) NOPASSWD: /sbin/iptables, /usr/bin/chattr, /usr/bin/python2, /usr/bin/python" /etc/sudoers; then
     echo "xtreamcodes ALL = (root) NOPASSWD: /sbin/iptables, /usr/bin/chattr, /usr/bin/python2, /usr/bin/python" >> /etc/sudoers;
-fi
+if
 ln -s /home/xtreamcodes/iptv_xtream_codes/bin/ffmpeg /usr/bin/
 if ! grep -q "tmpfs /home/xtreamcodes/iptv_xtream_codes/streams tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=90% 0 0" /etc/fstab; then
 	echo "tmpfs /home/xtreamcodes/iptv_xtream_codes/streams tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=90% 0 0" >> /etc/fstab;
-fi
+if
 if ! grep -q "tmpfs /home/xtreamcodes/iptv_xtream_codes/tmp tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=2G 0 0" /etc/fstab; then
 	echo "tmpfs /home/xtreamcodes/iptv_xtream_codes/tmp tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=2G 0 0" >> /etc/fstab;
-fi
+if
 chmod -R 0777 /home/xtreamcodes
 cat > /home/xtreamcodes/iptv_xtream_codes/nginx/conf/nginx.conf <<EOR
 user  xtreamcodes;
