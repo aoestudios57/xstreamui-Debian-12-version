@@ -702,18 +702,13 @@ echo "
 "
 ######################################################################
 ## copy info to file text
-echo "
-───────────────────────────  INFO  ─────────────────────────────────
-│
-│ PANEL ACCESS: http://$ipaddr:$ACCESPORT
-│ 
-│ USERNAME: $adminn
-│
-│ PASSWORD: $adminpass
-│ 
-│ MYSQL root PASS: $PASSMYSQL
-│
-│ MYSQL user_iptvpro PASS: $XPASS
-│ 
-────────────────────────────────────────────────────────────────────
-" >> /root/Xtreaminfo.txt
+echo "────────────────────────────────────────────────────────────────────"
+echo " │ PANEL ACCESS: http://$ipaddr:$ACCESPORT"
+echo " │"
+echo " │ USERNAME: $adminn"
+echo " │ PASSWORD: $adminpass"
+echo " │"
+echo " │ MYSQL root PASS: $PASSMYSQL"
+echo " │ MYSQL user_iptvpro PASS: $XPASS"
+echo " ─────────────────────────────────────────────────────────────────────"
+ >> /root/Xtreaminfo.txt
